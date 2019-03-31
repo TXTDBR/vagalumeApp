@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Música</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-header>
+    <ion-card-title>{{artist.name}}</ion-card-title>
+
+
+    <ion-card-content>
+      <ion-card-subtitle *ngFor="let m of musica">
+        <ion-card-subtitle>Letra Original</ion-card-subtitle>
+         
+          <ion-card-title>{{m.name}}</ion-card-title>
+           <ion-card-content>
+              {{m.text}}
+            </ion-card-content>
+            <ion-card-content>
+                {{m.translate.name}}
+              </ion-card-content>
+
+      </ion-card-subtitle>
+     
+    </ion-card-content>
+  </ion-card-header>
+
+
+</ion-content>
