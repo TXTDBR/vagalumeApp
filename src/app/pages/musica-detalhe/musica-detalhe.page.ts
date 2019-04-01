@@ -9,7 +9,7 @@ import { HotspotsService } from 'src/app/providers/hotspots.service';
 })
 export class MusicaDetalhePage implements OnInit {
   
-  public musica:any;
+  public musica:any = [];
   public id:any = 1;
   public artist = {};
   public musicaTraduzida = {};
@@ -28,6 +28,7 @@ export class MusicaDetalhePage implements OnInit {
     this.serviceProvier.getMusicById(this.id).subscribe(
       data => {
         let rs = (data as any);
+        
         this.artist = rs.art;
         this.musica = rs.mus;
         this.musicaTraduzida = this.musica;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HotspotsService } from '../providers/hotspots.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,11 @@ import { HotspotsService } from '../providers/hotspots.service';
 })
 export class HomePage implements OnInit{
 
-  public hotSpot:any = []; 
-//  private dateUs:any = [];
-  constructor(private serviceProvider: HotspotsService){
+  public hotSpot:any = [];
+  public music_name:string; 
+  private musicas:any = [];
+  constructor(private serviceProvider: HotspotsService,
+    private loadingController: LoadingController){
 
   }
   
@@ -18,16 +21,41 @@ export class HomePage implements OnInit{
     this.carregarHotSpot()
   }
 
-  carregarHotSpot(param:string = 'hotspots.php?apikey='){
+  buscarPorNome(){
+    this.serviceProvider.getMusicByName(this.music_name).subscribe(
+      data => {
+        let rs  = (data as any);
+         this.musicas = rs.response;
+         console.log(this.musicas);
+      }, error =>{
+        console.log(error);
+      }
+    );
+  }
+
+  async carregarHotSpot(param:string = 'hotspots.php?apikey='){
+    const loading = await this.loadingController.create({
+      message: 'Carregando filmes...'
+    });
+
+    await loading.present();
     this.serviceProvider.getHotSpot(param).subscribe(
       data => {
         let rs = (data as any);
         this.hotSpot = rs.hotspots;
         console.log(this.hotSpot);
+        loading.dismiss();
       }, error => {
         console.log(error);
       }
     );
+  }
+
+  doRefresh(event) {
+    this.carregarHotSpot();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
   }
 
 }
