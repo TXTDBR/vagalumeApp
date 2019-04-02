@@ -18,12 +18,12 @@ export class AppComponent {
         {
       title: 'Nacional',
       url: '/ranking-nacional/nacional',
-      icon: 'music'
+      icon: 'trophy'
     },
     {
       title: 'Internacional',
       url: '/ranking-nacional/internacional',
-      icon: 'home'
+      icon: 'trophy'
     }
   ];
 
