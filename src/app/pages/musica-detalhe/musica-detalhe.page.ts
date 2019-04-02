@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotspotsService } from 'src/app/providers/hotspots.service';
+import { visitSiblingRenderNodes } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-musica-detalhe',
@@ -12,7 +13,8 @@ export class MusicaDetalhePage implements OnInit {
   public musica:any = [];
   public id:any = 1;
   public artist = {};
-  public musicaTraduzida = {};
+  private original = "true";
+  public vsMusica = [];
 
   constructor(private route: ActivatedRoute,
    private serviceProvier: HotspotsService,
@@ -25,14 +27,17 @@ export class MusicaDetalhePage implements OnInit {
   }
 
   carregarDetalhes(){
+    
     this.serviceProvier.getMusicById(this.id).subscribe(
-      data => {
-        let rs = (data as any);
-        
-        this.artist = rs.art;
-        this.musica = rs.mus;
-        this.musicaTraduzida = this.musica;
-        console.log();
+      (data:any) => {
+        this.vsMusica = data.mus[0];
+        if(this.original == "true"){
+          this.musica  = this.vsMusica;
+        }else if(this.original == "false"){
+          this.musica = this.musica.translate[0];
+        }
+        console.log(this.musica);
+        console.log(this.original);
       }, error =>{
         console.log(error)
       }

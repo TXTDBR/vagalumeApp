@@ -10,12 +10,23 @@
 
 
     <ion-card-content>
-      <ion-card-subtitle *ngFor="let m of musica">
-        <ion-card-subtitle>Letra Original</ion-card-subtitle>
+      <ion-card-subtitle>
+        <ion-card-subtitle>Letra </ion-card-subtitle>
          
-          <ion-card-title>{{m.name}}</ion-card-title>
+          <ion-card-title>{{musica.name}}</ion-card-title>
            <ion-card-content>
-              {{m.text}}
+              <ion-item>
+                  <ion-label>Letras</ion-label>
+                  <ion-select placeholder="Select One" [(ngModel)]="original" (ionChange)="carregarDetalhes()">
+                    <ion-select-option value="true">Original</ion-select-option>
+                    <ion-select-option value="false">Traduzida</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              
+              <p *ngIf="original; else traduzido">{{musica.text}}</p>
+              <ng-template #traduzido>
+               
+              </ng-template>
             </ion-card-content>
             <ion-card-content>
                 
