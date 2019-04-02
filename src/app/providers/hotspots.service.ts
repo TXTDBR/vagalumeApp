@@ -28,6 +28,6 @@ export class HotspotsService {
   }
 
   public getRanking(param){
-    return this.http.get(`${this.URL}rank.php?apikey=${this.KEY}&type=art&period=day&scope=nacional&limit=10`);
+    return this.http.get(`${this.URL}rank.php?apikey=${this.KEY}&type=art&period=day&scope=${param}&limit=10`);
   }
 }

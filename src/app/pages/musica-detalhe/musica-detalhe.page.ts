@@ -15,6 +15,7 @@ export class MusicaDetalhePage implements OnInit {
   public artist = {};
   private original = "true";
   public vsMusica = [];
+  public internacional =  "internacional";
 
   constructor(private route: ActivatedRoute,
    private serviceProvier: HotspotsService,

@@ -5,5 +5,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-card class="welcome-card" *ngFor="let rank of ranking" routerLink="/home/{{hot.musicID}}">
+    <ion-card-title>{{rank.name}}</ion-card-title>
+    
+    <ion-img src="{{rank.pic_medium}}"></ion-img>
 
+    <ion-card-content>
+      <span>Views: {{rank.views}}</span><span>Rank: {{rank.rank}}</span>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

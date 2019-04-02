@@ -5,8 +5,8 @@ const routes: Routes = [
   
   { path: '',  redirectTo: 'home',   pathMatch: 'full'  },
   { path: 'home',   loadChildren: './home/home.module#HomePageModule' },
-  { path: 'list',  loadChildren: './list/list.module#ListPageModule'  },
-  { path: 'home/:id', loadChildren: './pages/musica-detalhe/musica-detalhe.module#MusicaDetalhePageModule' },  { path: 'ranking-nacional', loadChildren: './pages/ranking-nacional/ranking-nacional.module#RankingNacionalPageModule' }
+  { path: 'home/:id', loadChildren: './pages/musica-detalhe/musica-detalhe.module#MusicaDetalhePageModule' },
+  { path: 'ranking-nacional', loadChildren: './pages/ranking-nacional/ranking-nacional.module#RankingNacionalPageModule' }
 
 ];
 
