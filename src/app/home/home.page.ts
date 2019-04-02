@@ -22,11 +22,15 @@ export class HomePage implements OnInit{
   }
 
   buscarPorNome(){
+   
     this.serviceProvider.getMusicByName(this.music_name).subscribe(
       data => {
         let rs  = (data as any);
-         this.musicas = rs.response;
-         console.log(this.musicas);
+        if(this.music_name != ''){
+          this.musicas = rs.response;
+         
+        }
+         
       }, error =>{
         console.log(error);
       }

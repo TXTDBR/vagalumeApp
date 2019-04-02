@@ -27,7 +27,7 @@ export class HotspotsService {
     return this.http.get(`${this.URL}search.excerpt?apikey=${this.KEY}&q=${name}&limit=10`);
   }
 
-  public getRanking(param){
-    return this.http.get(`${this.URL}rank.php?apikey=${this.KEY}&type=art&period=day&scope=${param}&limit=10`);
+  public getRanking(param:string){
+    return this.http.get(`${this.URL}rank.php?type=art&period=day&scope=${param}&limit=10&apikey=${this.KEY}`);
   }
 }

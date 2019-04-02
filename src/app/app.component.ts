@@ -14,6 +14,16 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
+    },
+        {
+      title: 'Nacional',
+      url: '/ranking-nacional/nacional',
+      icon: 'music'
+    },
+    {
+      title: 'Internacional',
+      url: '/ranking-nacional/internacional',
+      icon: 'home'
     }
   ];
 

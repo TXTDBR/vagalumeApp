@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>rankingNacional</ion-title>
+    <ion-title>ranking {{tipoRanking}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="welcome-card" *ngFor="let rank of ranking" routerLink="/home/{{hot.musicID}}">
+  <ion-card class="welcome-card" *ngFor="let rank of ranking">
     <ion-card-title>{{rank.name}}</ion-card-title>
     
-    <ion-img src="{{rank.pic_medium}}"></ion-img>
+    <ion-img src="{{rank.pic_small}}"></ion-img>
 
     <ion-card-content>
       <span>Views: {{rank.views}}</span><span>Rank: {{rank.rank}}</span>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HotspotsService } from 'src/app/providers/hotspots.service';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute } from '@angular/router';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-ranking-nacional',
@@ -10,11 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RankingNacionalPage implements OnInit {
 
-  public tipoRanking:string = "internacional";
-  public ranking = [];
+  public tipoRanking:string;
+  public ranking:any = [];
+ 
   constructor( private serviceProvier: HotspotsService, 
     private route: ActivatedRoute ) {
-      console.log(this.route.snapshot.paramMap.get('tipo'))
+      this.tipoRanking = this.route.snapshot.paramMap.get('tipo');
      }
 
   ngOnInit() {
@@ -23,12 +25,13 @@ export class RankingNacionalPage implements OnInit {
 
   carregarRanking(){
     this.serviceProvier.getRanking(this.tipoRanking).subscribe(
-      data => {
-        let rs = (data as any);
-        
-        this.ranking = rs.nacional;
-       
-        console.log(  this.ranking);
+      (data:any) => {
+        if(this.tipoRanking == 'internacional')
+        this.ranking = data.art.day.internacional;
+        else if(this.tipoRanking == 'nacional'){
+          this.ranking = data.art.day.nacional;
+        }
+        console.log(this.ranking);
       }, error =>{
         console.log(error)
       }
